@@ -26,7 +26,7 @@ public class StudentDaoImpl implements StudentDao {
 		int x= ps.executeUpdate();
 		if(x>0)
 		{
-			message="Student Registerd Scuessfully..!!";
+			message="Student Registerd Sucessfully..!!";
 		}
 		
 		
