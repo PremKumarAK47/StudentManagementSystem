@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.masai.bean.Student;
 import com.masai.dao.StudentDao;
 import com.masai.dao.StudentDaoImpl;
+import com.masai.exception.StudentException;
 
 public class RegisterStudent {
 	
@@ -28,8 +29,15 @@ public class RegisterStudent {
 		stu.setPassword(pass);
 		
 		
-		String result=stuDao.RegisterStudent(stu);
-		System.out.println(result);
+		String result;
+		try {
+			result = stuDao.RegisterStudent(stu);
+			System.out.println(result);
+		} catch (StudentException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
 	}
 
 }
