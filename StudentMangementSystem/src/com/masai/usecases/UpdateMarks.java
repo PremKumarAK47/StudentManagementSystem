@@ -20,6 +20,7 @@ public class UpdateMarks {
      
      try {
 		Student stu=sdao.updateMarks(roll,marks);
+		System.out.println("Student marks Updated SucessFully");
 		System.out.println(stu);
 		
 	} catch (StudentException e) {

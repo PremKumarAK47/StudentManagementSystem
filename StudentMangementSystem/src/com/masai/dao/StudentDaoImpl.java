@@ -85,16 +85,35 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public Student updateMarks(int roll,int marks) throws StudentException {
-		Student stu=null;
-		try(Connection conn=DBUtil.provideConnection();) {
+		Student stu=new Student();
+		try(Connection conn=DBUtil.provideConnection();) 
+		{
 			PreparedStatement ps=conn.prepareStatement("UPDATE student SET marks = marks + ? WHERE roll = ?");
 		
-		ps.setInt(1, roll);
-		ps.setInt(2, marks);
+		ps.setInt(1, marks);
+		ps.setInt(2, roll);
 		
 		int x= ps.executeUpdate();
 		if(x>0)
 		{
+			PreparedStatement ps1= conn.prepareStatement("Select * from student where roll=?");
+			ps1.setInt(1, roll);
+			ResultSet rs= ps1.executeQuery();
+			
+			if(rs.next())
+			{
+				
+				int r=rs.getInt("roll");
+				String n=rs.getNString("name");
+				int m= rs.getInt("marks");
+				String e=rs.getString("email");
+				String p=rs.getString("password");
+				
+				 stu= new Student(r, n, m, e, p);
+				
+			}
+			
+			
 			return stu;
 			
 		}
@@ -110,6 +129,55 @@ public class StudentDaoImpl implements StudentDao {
 			// TODO Auto-generated catch block
 			throw new StudentException(e.getMessage());
 		}
+	}
+
+	@Override
+	public Student deleteStudentByRoll(int roll) throws StudentException {
+		
+		Student stu=getStudentByRoll(roll);
+		
+		if(stu!=null)
+		{
+			
+		
+		try(Connection conn= DBUtil.provideConnection()) {
+			PreparedStatement ps=conn.prepareStatement("Delete from Student where roll=?");
+		
+		ps.setInt(1,roll);
+		
+		int x=ps.executeUpdate();
+//		if(rs.next())
+//		{
+//			int r=rs.getInt("roll");
+//			String n=rs.getNString("name");
+//			int m= rs.getInt("marks");
+//			String e=rs.getString("email");
+//			String p=rs.getString("password");
+//			
+//			 stu= new Student(r, n, m, e, p);
+//		}
+//		else {
+//			System.out.println("Student not Found Of this Roll No. :");
+//		}
+		if(x>0)
+		{
+			System.out.println("Student Deleted Sucessfully !!");
+		}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		else {
+			System.out.println("Student not Found Of this Roll No. :");
+		}
+		
+		
+		
+		
+		
+		return stu;
 	}
 
 }
