@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.masai.bean.Student;
 import com.masai.exception.StudentException;
@@ -157,9 +159,72 @@ public class StudentDaoImpl implements StudentDao {
 	public Student loginStudent(String username, String password) throws StudentException {
 		Student stu=null;
 		
+	
+	try(Connection conn	=DBUtil.provideConnection();) {
+		PreparedStatement ps= conn.prepareStatement("select * from student where name=? && password=?");
+	 ps.setString(1, username);
+	 ps.setString(2, password);
+	 
+	 ResultSet rs =ps.executeQuery();
+	 if(rs.next())
+	 {
+		    int r=rs.getInt("roll");
+			String n=rs.getNString("name");
+			int m= rs.getInt("marks");
+			String e=rs.getString("email");
+			String p=rs.getString("password");
+			
+			 stu= new Student(r, n, m, e, p);
+	 }
+	 else {
+		 throw new StudentException("Invalid UserName and Password !!");
+	 }
+	
+	
+	} catch (SQLException e) {
 		
+		throw new StudentException(e.getMessage());
 		
+	}
+		System.out.println("Welcome "+stu.getName()+", You have been Logged in SucessFully !!");
 		return stu;
 	}
+
+	@Override
+	public List<Student> getAllStudentDetails() throws StudentException {
+		List<Student>stuList= new ArrayList<Student>();
+		
+	
+	 try(Connection conn=DBUtil.provideConnection();) {
+		PreparedStatement ps= conn.prepareStatement("Select * from student");
+	      ResultSet rs=ps.executeQuery();
+	      while(rs.next())
+	      {
+	    	  int r=rs.getInt("roll");
+	    	  String n=rs.getString("name");
+	    	  int m=rs.getInt("marks");
+	    	  String e=rs.getString("email");
+	    	  String p=rs.getString("password");
+	    	  
+	    	  Student stu= new Student(r, n, m, e, p);
+	    	  stuList.add(stu);
+	    	  
+	      }
+	 
+	 } catch (SQLException e) {
+		 throw new StudentException(e.getMessage());
+		
+	}
+	 if(stuList.size()==0)
+	 {
+		 throw new StudentException("No Students found...,Please Register Some Student !");
+	 }
+		
+		
+		return stuList;
+		
+	}
+	
+	
 
 }
