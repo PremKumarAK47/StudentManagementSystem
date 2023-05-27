@@ -21,7 +21,7 @@ public class GetStudentByRoll {
 			System.out.println(stu);
 		} catch (StudentException se) {
 			// TODO Auto-generated catch block
-			System.out.println(se.getMessage());
+			System.out.println(se.getMessage()+" "+roll);
 		}
 
 	}

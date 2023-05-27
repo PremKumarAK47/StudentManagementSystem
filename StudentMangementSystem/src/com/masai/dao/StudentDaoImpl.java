@@ -46,6 +46,7 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public Student getStudentByRoll(int roll) throws StudentException {
+		
 		Student stu=null;
 		
 		
@@ -67,7 +68,7 @@ public class StudentDaoImpl implements StudentDao {
 			
 		}
 		else {
-			throw new StudentException("Student Not Registered with this roll no.");
+			throw new StudentException("Student Not Registered with this roll no. "+roll);
 			
 		}
 		
@@ -113,13 +114,6 @@ public class StudentDaoImpl implements StudentDao {
 				
 			}
 			
-			
-			return stu;
-			
-		}
-		else {
-			throw new StudentException("Student Not found with this roll no.");
-			
 		}
 		
 		} 
@@ -129,6 +123,8 @@ public class StudentDaoImpl implements StudentDao {
 			// TODO Auto-generated catch block
 			throw new StudentException(e.getMessage());
 		}
+		System.out.println("Student's Marks Updated Sucessfully !!");
+		return stu;
 	}
 
 	@Override
@@ -136,44 +132,30 @@ public class StudentDaoImpl implements StudentDao {
 		
 		Student stu=getStudentByRoll(roll);
 		
-		if(stu!=null)
-		{
-			
-		
 		try(Connection conn= DBUtil.provideConnection()) {
 			PreparedStatement ps=conn.prepareStatement("Delete from Student where roll=?");
 		
 		ps.setInt(1,roll);
 		
-		int x=ps.executeUpdate();
-//		if(rs.next())
-//		{
-//			int r=rs.getInt("roll");
-//			String n=rs.getNString("name");
-//			int m= rs.getInt("marks");
-//			String e=rs.getString("email");
-//			String p=rs.getString("password");
-//			
-//			 stu= new Student(r, n, m, e, p);
-//		}
-//		else {
-//			System.out.println("Student not Found Of this Roll No. :");
-//		}
+		int x=ps.executeUpdate();		
 		if(x>0)
 		{
 			System.out.println("Student Deleted Sucessfully !!");
 		}
 		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
+			
 			e.printStackTrace();
+			//throw new StudentException("Student not Found with this Roll no. "+ roll);
+			//No need to handle here already handled in getStudentByRoll.
 		}
-		}
-		else {
-			System.out.println("Student not Found Of this Roll No. :");
-		}
-		
-		
+	
+		return stu;
+	}
+
+	@Override
+	public Student loginStudent(String username, String password) throws StudentException {
+		Student stu=null;
 		
 		
 		

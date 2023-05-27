@@ -8,5 +8,6 @@ public interface StudentDao {
     public Student getStudentByRoll(int roll)throws StudentException;
     public Student updateMarks(int roll,int marks) throws StudentException;
     public Student deleteStudentByRoll(int roll)throws StudentException;
+    public Student loginStudent(String username, String password) throws StudentException;
     
 }

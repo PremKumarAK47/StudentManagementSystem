@@ -21,8 +21,9 @@ public class DeleteStudentByRoll {
 			//System.out.println("Student Deleted SucessFully !!");
 			System.out.println(stu);
 		} catch (StudentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
