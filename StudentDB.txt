@@ -1,0 +1,24 @@
+create table student
+(
+roll int primary key auto_increment,
+name varchar(255) not null,
+marks int,
+email varchar(25) not null,
+password varchar(10) not null
+)
+
+
+create table course
+(
+cid int primary key auto_increment,
+cname varchar(12),
+fee int
+);
+
+create table course_student
+(
+cid int,
+roll int,
+foreign key (cid) references course(cid),
+foreign key (roll) references student(roll)
+);
