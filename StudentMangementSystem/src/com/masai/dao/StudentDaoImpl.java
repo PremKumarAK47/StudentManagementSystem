@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.masai.bean.Course;
 import com.masai.bean.Student;
+import com.masai.exception.CourseException;
 import com.masai.exception.StudentException;
 import com.masai.utility.DBUtil;
 
@@ -22,7 +25,7 @@ public class StudentDaoImpl implements StudentDao {
 		try(Connection conn =DBUtil.provideConnection()) {
 			PreparedStatement ps=conn.prepareStatement("insert into Student(name,marks,email,password) values(?,?,?,?)");
 		
-		ps.setNString(1, student.getName());
+		ps.setString(1, student.getName());
 		ps.setInt(2,student.getMarks());
 		ps.setString(3, student.getEmail());
 		ps.setString(4,student.getPassword());
@@ -223,6 +226,37 @@ public class StudentDaoImpl implements StudentDao {
 		
 		return stuList;
 		
+	}
+
+	@Override
+	public Course addCourse(Course course) throws CourseException {
+		//Course cours=null;
+		
+		try(Connection conn=DBUtil.provideConnection()) {
+			
+			//PreparedStatement ps= conn.prepareStatement("insert into course(cname,fee) values(?,?)");
+			PreparedStatement ps= conn.prepareStatement("insert into course(cname,fee) values(?,?)", Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, course.getcName());
+			ps.setInt(2, course.getFee());
+			
+			ps.executeUpdate();
+			
+			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+	            if (generatedKeys.next()) {
+	                int courseId = generatedKeys.getInt(1);
+	                course.setCid(courseId);
+	            }
+	        }
+			
+			}
+		
+		
+		catch (Exception e) {
+			//throw new CourseException("Please Define The Course Table");
+			e.printStackTrace();
+		}
+		System.out.println("Course Details Added SucessFully..!!");
+		return course;
 	}
 	
 	
