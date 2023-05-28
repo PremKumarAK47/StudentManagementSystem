@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.masai.bean.Course;
 import com.masai.bean.Student;
+import com.masai.bean.StudentDTO;
 import com.masai.exception.CourseException;
 import com.masai.exception.StudentException;
 import com.masai.utility.DBUtil;
@@ -311,6 +312,54 @@ public class StudentDaoImpl implements StudentDao {
 		
 		
 		return message;
+	}
+
+	@Override
+	public List<StudentDTO> getAllStudentsByCname(String cname) throws CourseException {
+		List<StudentDTO>stuCourse= new ArrayList<>();
+
+		try (Connection conn = DBUtil.provideConnection()){
+			
+	PreparedStatement ps= conn.prepareStatement("select s.roll, s.name,s.email, c.cname, c.fee "
+														+ "from  student s INNER JOIN course c INNER JOIN course_student cs "
+														+ "ON s.roll = cs.roll AND c.cid = cs.cid AND c.cname= ?");
+			
+			ps.setString(1, cname);
+			
+			ResultSet rs= ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int r= rs.getInt("roll");
+				String sn= rs.getString("name");
+				String em= rs.getString("email");
+				
+				String cn= rs.getString("cname");
+				int f= rs.getInt("fee");
+				
+				StudentDTO dto = new StudentDTO(r, sn, em, cn, f);
+				
+				stuCourse.add(dto);
+				
+				
+				
+			}
+			
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			throw new CourseException(e.getMessage());
+		}
+		
+		
+		
+		if(stuCourse.isEmpty())
+			throw new CourseException("No Student found in that course");
+	
+		return stuCourse;
 	}
 	
 	
