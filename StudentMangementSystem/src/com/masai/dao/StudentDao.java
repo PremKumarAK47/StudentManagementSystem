@@ -15,4 +15,5 @@ public interface StudentDao {
     public Student loginStudent(String username, String password) throws StudentException;
     public List<Student> getAllStudentDetails()throws StudentException;
     public Course addCourse(Course course)throws CourseException;
+    public String registerStudentInsideACourse(int roll, int cid) throws StudentException,CourseException;
 }

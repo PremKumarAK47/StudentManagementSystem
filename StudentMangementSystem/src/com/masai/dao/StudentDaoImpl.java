@@ -258,6 +258,60 @@ public class StudentDaoImpl implements StudentDao {
 		System.out.println("Course Details Added SucessFully..!!");
 		return course;
 	}
+
+	@Override
+	public String registerStudentInsideACourse(int roll, int cid) throws StudentException, CourseException {
+		String message="Student Not Registered into a course";
+		/*
+		 * Here we can use the getStudentByRoll(int roll); then we had to written only one query
+		 * otherwise we have to written 3 query like this.
+		 * means we can optimize this.
+		 */
+		
+		try(Connection conn =DBUtil.provideConnection()) {
+			PreparedStatement ps=conn.prepareStatement("Select * from student where roll=?");
+		    
+			ps.setInt(1,roll);
+			ResultSet rs= ps.executeQuery();
+			if(rs.next())
+			{
+				PreparedStatement ps2=conn.prepareStatement("select * from course where cid=?");
+				ps2.setInt(1, cid);
+				
+				ResultSet rs2=ps2.executeQuery();
+				if(rs2.next())
+				{
+					PreparedStatement ps3=conn.prepareStatement("insert into course_student values(?,?)");
+					ps3.setInt(1, roll);
+					ps3.setInt(2, cid);
+					
+					int x=ps3.executeUpdate();
+					if(x>0)
+					{
+						message="Student Registered into a course SucessFully !";
+					}
+					else {
+						throw new StudentException("Technical Error !");
+					}
+				}
+				else {
+					throw new CourseException("Invalid Course");
+				}
+			}
+			else {
+				throw new StudentException("Student not Registerd with this roll !");
+			}
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+		
+		
+		
+		return message;
+	}
 	
 	
 
