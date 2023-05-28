@@ -23,7 +23,7 @@ public class GetStudentByRoll {
 			// TODO Auto-generated catch block
 			System.out.println(se.getMessage()+" "+roll);
 		}
-
+		sc.close();
 	}
 
 }

@@ -39,7 +39,8 @@ public class RegisterInsideAcourse {
 		System.out.println(e.getMessage());
 	} 
      
-
+   sc.close();
 	}
+	
 
 }

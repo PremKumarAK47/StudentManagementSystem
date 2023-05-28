@@ -30,7 +30,7 @@ public class UpdateMarks {
 		System.out.println(e.getMessage());
 	}
      
-     
+     sc.close();
      
      
      
@@ -49,7 +49,7 @@ public class UpdateMarks {
 //		// TODO Auto-generated catch block
 //		System.out.println(e.getMessage()+" "+roll);
 //	}
-
+     
 	}
 
 }

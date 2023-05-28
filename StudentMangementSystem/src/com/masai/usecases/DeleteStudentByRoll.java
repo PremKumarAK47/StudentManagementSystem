@@ -25,7 +25,7 @@ public class DeleteStudentByRoll {
 			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-
+		sc.close();
 	}
 
 }

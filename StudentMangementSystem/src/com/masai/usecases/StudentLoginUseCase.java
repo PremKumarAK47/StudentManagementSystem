@@ -26,7 +26,7 @@ public class StudentLoginUseCase {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-
+		sc.close();
 	}
 
 }
