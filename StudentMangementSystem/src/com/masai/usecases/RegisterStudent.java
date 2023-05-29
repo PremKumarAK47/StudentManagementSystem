@@ -9,7 +9,8 @@ import com.masai.exception.StudentException;
 
 public class RegisterStudent {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter Student Name-:");
 		String sname= sc.nextLine();
@@ -31,7 +32,7 @@ public class RegisterStudent {
 		
 		String result;
 		try {
-			result = stuDao.RegisterStudent(stu);
+			result = stuDao.registerStudent(stu);
 			System.out.println(result);
 		} catch (StudentException e) {
 			// TODO Auto-generated catch block

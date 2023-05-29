@@ -18,7 +18,7 @@ import com.masai.utility.DBUtil;
 public class StudentDaoImpl implements StudentDao {
 
 	@Override
-	public String RegisterStudent(Student student) {
+	public String registerStudent(Student student) {
 		String message ="Not Inserted";
 		
 		

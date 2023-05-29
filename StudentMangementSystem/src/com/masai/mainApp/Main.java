@@ -16,6 +16,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
+		
 		while(true)
 		{
 			System.out.println("Welcome To Student Management System -:");
@@ -31,36 +32,50 @@ public class Main {
 			System.out.println("10.Exit");
 			
 			System.out.print("Please Enter your Choice :");
+			if (sc.hasNextInt()) 
+			{
+		        int choice = sc.nextInt();
+		        sc.nextLine();
 			
-			int choice=sc.nextInt();
-			switch (choice) {
+		    switch (choice) 
+		    {
 			case 1 :
-				RegisterStudent rs= new RegisterStudent();
-				System.out.println(rs);
+				 
+				RegisterStudent.main(args);
+				
+				
 				break;
 			case 2:
-				StudentLoginUseCase login= new StudentLoginUseCase();
+				
+				StudentLoginUseCase.main(args);
 				break;
 			case 3 :
-				GetStudentByRoll getByRoll= new GetStudentByRoll();
+				
+				GetStudentByRoll.main(args);
 				break;
 			case 4:
-				UpdateMarks updateMarks= new UpdateMarks();
+				
+				UpdateMarks.main(args);
 				break;
 			case 5:
-				DeleteStudentByRoll delStu= new DeleteStudentByRoll();
+				//DeleteStudentByRoll delStu= new DeleteStudentByRoll();
+				DeleteStudentByRoll.main(args);
 				break;
 			case 6:
-				GetAllStudentDetalis getDetails= new GetAllStudentDetalis();
+				//GetAllStudentDetalis getDetails= new GetAllStudentDetalis();
+				GetAllStudentDetalis.main(args);
 				break;
 			case 7 :
-				RegisterIntoCourse regcourse= new RegisterIntoCourse();
+				//RegisterIntoCourse regcourse= new RegisterIntoCourse();
+				RegisterIntoCourse.main(args);
 				break;
 			case 8:
-				RegisterInsideAcourse stuCourse= new RegisterInsideAcourse();
+				//RegisterInsideAcourse stuCourse= new RegisterInsideAcourse();
+				RegisterInsideAcourse.main(args);
 				break;
 			case 9:
-				GetStudentsFromCourseUseCase getStufromCourse= new GetStudentsFromCourseUseCase();
+				//GetStudentsFromCourseUseCase getStufromCourse= new GetStudentsFromCourseUseCase();
+				GetStudentsFromCourseUseCase.main(args);
 				break;
 			case 10:
 				System.out.println("Exiting Student Management System...!!");
@@ -71,14 +86,15 @@ public class Main {
 				System.out.println("Please Choose A Valid choice..!!");
 				break;
 			}
-			
-			
-			
+			}
+			else {
+		        System.out.println("Invalid input. Please enter a valid integer choice.");
+		        sc.nextLine(); 
+		    }
 		}
-		
-//sc.close();
-		
-		
+	
 	}
+	
+	
 	
 }
