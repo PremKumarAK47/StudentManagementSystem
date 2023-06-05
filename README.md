@@ -1,6 +1,6 @@
 # StudentManagementSystem 
 ## Here is all about this Student Management System 
-This is a Console Based Project in which I have used Java, JDBC and DAO pattern to create this.
+This is a Console Based Project in which I have used Java, JDBC, DAO pattern and SQL as a DataBase to create this.
 ## Features -:
 
 **1. Register The Student:** Allows you to register a new student by providing their details such as roll number, name, marks, email, and password.
