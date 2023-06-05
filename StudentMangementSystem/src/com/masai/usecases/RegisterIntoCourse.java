@@ -32,7 +32,7 @@ public class RegisterIntoCourse {
 	} catch (CourseException e) {
 		System.out.println(e.getMessage());
 	}
-     sc.close();
+    // sc.close();
 	}
  
 }

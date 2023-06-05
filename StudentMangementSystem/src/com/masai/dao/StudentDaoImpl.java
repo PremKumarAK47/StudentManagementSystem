@@ -341,15 +341,8 @@ public class StudentDaoImpl implements StudentDao {
 				
 				stuCourse.add(dto);
 				
-				
-				
 			}
-			
-			
-			
-			
-			
-			
+		
 		} catch (SQLException e) {
 			throw new CourseException(e.getMessage());
 		}
@@ -357,7 +350,7 @@ public class StudentDaoImpl implements StudentDao {
 		
 		
 		if(stuCourse.isEmpty())
-			throw new CourseException("No Student found in that course");
+			throw new CourseException("No Student found in that course...!!");
 	
 		return stuCourse;
 	}

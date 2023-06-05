@@ -16,17 +16,18 @@ public class StudentLoginUseCase {
 		System.out.println("Enter Student's Name-:");
 		String name= sc.nextLine();
 		System.out.println("Enter Student's Password");
-		String pass=sc.next();
+		String pass=sc.nextLine().trim();
+		
 		
 		StudentDao sDao= new StudentDaoImpl();
 		try {
 			Student stu= sDao.loginStudent(name, pass);
-			//System.out.println(stu);
+			
 		} catch (StudentException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		sc.close();
+		
 	}
 
 }

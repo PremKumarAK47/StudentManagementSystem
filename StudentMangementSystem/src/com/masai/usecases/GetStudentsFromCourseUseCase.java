@@ -10,7 +10,7 @@ import com.masai.dao.StudentDaoImpl;
 public class GetStudentsFromCourseUseCase {
 	
 	public static void main(String[] args) {
-Scanner sc= new Scanner(System.in);
+     Scanner sc= new Scanner(System.in);
 		
 		System.out.print("Enter the Course Name :");
 		
@@ -28,18 +28,13 @@ Scanner sc= new Scanner(System.in);
 		System.out.println("Student Email :"+dto.getEmail());
 		System.out.println("Student Course :"+dto.getCname());
 		System.out.println("Course Fee :"+dto.getFee());
-		
-				
-				
+			
 		});		
-				
-				
-		
 		
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		sc.close();
+		
 	}
 
 }

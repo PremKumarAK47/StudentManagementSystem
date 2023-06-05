@@ -28,14 +28,12 @@ public class RegisterInsideAcourse {
 				String mess= sdao.registerStudentInsideACourse(roll, cid);
 				System.out.println(mess);
 			} catch (CourseException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
+				
 				System.out.println(e.getMessage());
 			}
 		}
 	} catch (StudentException e) {
-		// TODO Auto-generated catch block
-		//e.printStackTrace();
+		
 		System.out.println(e.getMessage());
 	} 
      

@@ -13,7 +13,8 @@ public class StudentDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public StudentDTO(int roll, String name, String email, String cname, int fee) {
+	public StudentDTO(int roll, String name, String email, String cname, int fee) 
+	{
 		super();
 		this.roll = roll;
 		this.name = name;

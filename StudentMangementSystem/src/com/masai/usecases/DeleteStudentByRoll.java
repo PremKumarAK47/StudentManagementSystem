@@ -18,14 +18,14 @@ public class DeleteStudentByRoll {
 		
 		try {
 			Student stu= sDao.deleteStudentByRoll(roll);
-			//System.out.println("Student Deleted SucessFully !!");
+			
 			System.out.println(stu);
 		} catch (StudentException e) {
 			
-			//e.printStackTrace();
+			
 			System.out.println(e.getMessage());
 		}
-		sc.close();
+		
 	}
 
 }

@@ -26,8 +26,7 @@ public class GetAllStudentDetalis {
 		
 		});
 	} catch (StudentException e) {
-		// TODO Auto-generated catch block
-		//e.printStackTrace();
+		
 		System.out.println(e.getMessage());
 	}
 

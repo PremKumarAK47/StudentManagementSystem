@@ -14,11 +14,13 @@ import com.masai.usecases.UpdateMarks;
 
 public class Main {
 
-	public static void main(String[] args) {
+	
+	public static void main(String[] args) 
+	{
 		Scanner sc= new Scanner(System.in);
-		
 		while(true)
 		{
+		   
 			System.out.println("Welcome To Student Management System -:");
 			System.out.println("1.Register The Student :");
 			System.out.println("2.Login Student :");
@@ -30,15 +32,15 @@ public class Main {
 			System.out.println("8.Register a Student into a course");
 			System.out.println("9.Get Student's course Details :");
 			System.out.println("10.Exit");
-			
+			System.out.println();
 			System.out.print("Please Enter your Choice :");
-			if (sc.hasNextInt()) 
-			{
-		        int choice = sc.nextInt();
-		        sc.nextLine();
 			
+			
+		     int choice = sc.nextInt();
+		    
 		    switch (choice) 
 		    {
+		    
 			case 1 :
 				 
 				RegisterStudent.main(args);
@@ -48,6 +50,7 @@ public class Main {
 			case 2:
 				
 				StudentLoginUseCase.main(args);
+				System.out.println();
 				break;
 			case 3 :
 				
@@ -58,23 +61,23 @@ public class Main {
 				UpdateMarks.main(args);
 				break;
 			case 5:
-				//DeleteStudentByRoll delStu= new DeleteStudentByRoll();
+				
 				DeleteStudentByRoll.main(args);
 				break;
 			case 6:
-				//GetAllStudentDetalis getDetails= new GetAllStudentDetalis();
+				
 				GetAllStudentDetalis.main(args);
 				break;
 			case 7 :
-				//RegisterIntoCourse regcourse= new RegisterIntoCourse();
+				
 				RegisterIntoCourse.main(args);
 				break;
 			case 8:
-				//RegisterInsideAcourse stuCourse= new RegisterInsideAcourse();
+				
 				RegisterInsideAcourse.main(args);
 				break;
 			case 9:
-				//GetStudentsFromCourseUseCase getStufromCourse= new GetStudentsFromCourseUseCase();
+				
 				GetStudentsFromCourseUseCase.main(args);
 				break;
 			case 10:
@@ -87,15 +90,13 @@ public class Main {
 				
 				break;
 			}
-			}
-			else {
-		        System.out.println("Invalid input. Please enter a valid integer choice.");
-		        sc.nextLine(); 
+			
 		    }
+			
 		}
 	
 	}
 	
 	
 	
-}
+//}
